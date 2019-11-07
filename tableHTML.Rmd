@@ -1,0 +1,141 @@
+---
+title: "tableHTML"
+subtitle: "Budapest-BI"
+author: "Theo Boutaris, Clemens Zauchner, Dana Jomar"
+date: "14 November 2019"
+output: 
+  ioslides_presentation:
+    df_print: null
+    theme: null
+    css: style.css
+    logo: img/tableHTML.png
+    widescreen: true
+    keep_md: true
+    #smaller: true  ## only works without "---" slide breaks (use ##)
+    slide_level: 2
+#search and replace:
+# !\[\]\((.*)\)
+# 
+# ```{r, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = "left"}
+# knitr::include_graphics("\1")
+# ```
+# 
+# OLD:  
+# ```{r, eval = TRUE, echo = FALSE}
+# grid::grid.raster(png::readPNG("\1"))
+# ```
+# use {.smaller} after title for single slides
+
+    # 'f' enable fullscreen mode
+    # 'w' toggle widescreen mode
+    # 'o' enable overview mode
+    # 'h' enable code highlight mode
+    # 'p' show presenter notes
+#
+# two-column layout:
+#   ## title {.columns-2}
+#  or:
+#   <div class="columns-2">  </div>
+#  or:
+#   <div style="float: left; width: 50%;"> </div>  ## awesome! might need a <div> </div> before the columns... (only "left" also works)
+#   <div></div> <div style="float: left; width: 50%;"> </div> <div style="float: left; width: 50%;"> </div> 
+# color:
+#   <div class="red2"></div>
+#   <font color="red">
+#
+# slide layout: after title, place:
+#   {.flexbox .vcenter}
+#   { .smaller}
+#   
+---
+[//]: # (
+http://www.w3schools.com/css/css_font.asp
+http://www.cssfontstack.com/Helvetica
+)
+
+<style>
+/* gdbar size (that contains logo) on title page */
+/* needs to have greater height than logo image, other stuff is irrelevant */
+.gdbar {
+  position:absolute !important;
+  top: 50px !important; left: auto; right: 0px !important; width: 0px !important;
+  height: 500px !important;  /* modify if logo is larger than this in height */
+}
+/* logo size on title page */
+.gdbar img {
+  position: absolute; 
+  top: 0px;
+  left: 110px;
+  width:  248px !important;
+  height: 275px !important;
+}
+/*77 64*/
+/* logo size on slides */
+slides > slide:not(.nobackground):before {
+  width: 120px; height: 130px; /* modify width and height (twice) */
+  background-size: 124px 137.5px;
+  position: absolute; left: auto;
+  right: -30px;  /* modify position */
+  top: 10px;
+}
+/* for slides with red background (only works for normal text, not whole slide) {.bgred} */
+.bgred,
+.bgred div,
+.bgred body,
+.bgred .article,
+.bgred article,
+.bgred .prettyprint,
+.bgred .h1,
+.bgred .h2,
+.bgred .h3,
+.bgred backdrop,
+.bgred .backdrop,
+.bgred .slide,
+.bgred slide,
+.bgred slides > slide.backdrop {   
+  background-color:#ffaaaa;
+  background:#ffaaaa;
+}
+.footer {
+    position: fixed;
+    top: 70%;
+    width:100%;
+}
+/*slides > slide.backdrop {   */
+/*  background-color:#ffaaaa;   */
+/*  background:#ffaaaa;   */
+/*}   */
+</style>
+
+## Contents
+
+- Introduction
+- Basic Options
+- Themes
+- Add CSS customizations
+- Shiny
+
+
+```{r child = 'Introduction.Rmd'}
+```
+
+```{r child = 'Basic_options.Rmd'}
+```
+
+```{r child = 'Themes.Rmd'}
+```
+
+```{r child = 'Add_css.Rmd'}
+```
+
+```{r child = 'Shiny.Rmd'}
+```
+
+# Thank You
+<div style="color: white;">
+- If you need help using the package, there is a `tableHTML` tag on stackoverflow:
+<br>https://stackoverflow.com/questions/tagged/tablehtml
+
+- If you find any bugs please report them on the issues page on github.
+<br>https://github.com/LyzandeR/tableHTML/issues
+</div>

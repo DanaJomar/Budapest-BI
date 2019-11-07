@@ -1,0 +1,127 @@
+---
+#search and replace:
+# !\[\]\((.*)\)
+# ```{r, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = "left"}\nknitr::include_graphics("\1")\n```
+# OLD:  ```{r, eval = TRUE, echo = FALSE}\ngrid::grid.raster(png::readPNG("\1"))\n```
+# use {.smaller} after title for single slides
+
+    # 'f' enable fullscreen mode
+    # 'w' toggle widescreen mode
+    # 'o' enable overview mode
+    # 'h' enable code highlight mode
+    # 'p' show presenter notes
+#
+# two-column layout:
+#   ## title {.columns-2}
+#  or:
+#   <div class="columns-2">  </div>
+#  or:
+#   <div style="float: left; width: 50%;"> </div>  ## awesome! might need a <div> </div> before the columns... (only "left" also works)
+#   <div></div> <div style="float: left; width: 50%;"> </div> <div style="float: left; width: 50%;"> </div> 
+# color:
+#   <div class="red2"></div>
+#   <font color="red">
+#
+# slide layout: after title, place:
+#   {.flexbox .vcenter}
+#   { .smaller}
+#   
+---
+
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tableHTML)
+```
+
+
+# Basic Options
+
+
+## Basic Options
+- Right out of the bat the function `tableHTML()` offers a lot options to customize your table.
+
+<div style="float: left; width: 45%; font-size: 80%; margin-left: 30px"> 
+  + Add a CSS class `class`
+  + Change the width of the columns `width`
+  + Adjust the thickness of the external borders `border` 
+<br>
+<br>
+
+```{r eval = FALSE}
+mtcars %>% 
+  head(20) %>% 
+  tableHTML(class = 'table_0034', 
+            widths = c(200, rep(50, ncol(mtcars))), 
+            border = 10)
+```
+</div>
+
+<div style="float: right; width: 50%;"> 
+```{r, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = "left"}
+knitr::include_graphics("img/basic_opt_1.png")
+```
+</div>
+  
+
+
+## Basic Options
+- Right out of the bat the function `tableHTML()` offers a lot options to customize your table.
+
+<div style="float: left; width: 45%; font-size: 80%; margin-left: 30px"> 
+  + Add a second header `second_header`
+  + Add/remove row names `rownames`
+  + Add row groups `row_groups`
+<br>
+<br>
+
+```{r eval = FALSE}
+mtcars %>% 
+  head(20) %>% 
+  tableHTML(second_headers = 
+              list(c(3, 4, 5), 
+                   c('col1', 'col2', 'col3')),
+            rownames = FALSE,
+            row_groups = 
+              list(c(10, 10), 
+                   c('Group 1', 'Group 2')),
+            widths = c(100, rep(50, ncol(mtcars))), 
+            border = 10)
+```
+</div>
+
+<div style="float: right; width: 50%;"> 
+```{r, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = "left"}
+knitr::include_graphics("img/basic_opt_2.png")
+```
+</div>
+
+## Basic Options
+- Right out of the bat the function `tableHTML()` offers a lot options to customize your table.
+
+<div style="float: left; width: 45%; font-size: 80%; margin-left: 30px"> 
+  + Round numeric columns `round`
+  + Fill missing values `replace_NA`
+  + Add a caption above the table `caption`
+  + Add a footer `footer`
+  + Adjust the spacing between the cells of the table `collapse`, `spacing`
+<br>
+<br>
+
+```{r eval = FALSE}
+mtcars %>% 
+  head(15) %>% 
+  tableHTML(round=0,
+            caption = 
+              "This is the mtcars dataset",
+            footer = 
+              "Maybe we should've used iris", 
+            collapse = 'separate')
+```
+</div>
+
+<div style="float: right; width: 50%; "> 
+```{r, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = "left"}
+knitr::include_graphics("img/basic_opt_3.png")
+```
+</div>

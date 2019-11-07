@@ -1,0 +1,42 @@
+---
+#search and replace:
+# !\[\]\((.*)\)
+# ```{r, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = "left"}\nknitr::include_graphics("\1")\n```
+# OLD:  ```{r, eval = TRUE, echo = FALSE}\ngrid::grid.raster(png::readPNG("\1"))\n```
+# use {.smaller} after title for single slides
+
+    # 'f' enable fullscreen mode
+    # 'w' toggle widescreen mode
+    # 'o' enable overview mode
+    # 'h' enable code highlight mode
+    # 'p' show presenter notes
+#
+# two-column layout:
+#   ## title {.columns-2}
+#  or:
+#   <div class="columns-2">  </div>
+#  or:
+#   <div style="float: left; width: 50%;"> </div>  ## awesome! might need a <div> </div> before the columns... (only "left" also works)
+#   <div></div> <div style="float: left; width: 50%;"> </div> <div style="float: left; width: 50%;"> </div> 
+# color:
+#   <div class="red2"></div>
+#   <font color="red">
+#
+# slide layout: after title, place:
+#   {.flexbox .vcenter}
+#   { .smaller}
+#   
+---
+
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tableHTML)
+```
+
+
+# Shiny
+
+## Shiny
+- `render_tableHTML`
+- `tableHTML_output`
