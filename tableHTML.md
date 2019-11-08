@@ -442,21 +442,77 @@ df_q %>%
 # Add CSS customizations
 
 ## Add CSS customizations
-- These functions add inline CSS to the HTML table.
-- Can chain as many functions as needed when building the table
-- The CSS Code is added within the HTML table
-- For complex CSS-styles, it is advised to use a separate CSS file.
-- `add_css_header`
-- `add_css_seconder_header`
-- `add_css_thead` (headers and second headers)
-- `add_css_tbody` (to all table apart from the headers and second headers.)
-- `add_css_table`
-- `add_css_caption`
-- `add_css_footer`
-- `add_css_row`
-- `add_css_column`
-- `add_css_conditional_column`
+- The `add_css_...` family of functions adds inline CSS to the HTML table.
+    - `add_css_header`
+    - `add_css_seconder_header`
+    - `add_css_thead` (headers and second headers)
+    - `add_css_tbody` (to all table apart from the headers and second headers.)
+    - `add_css_table`
+    - `add_css_caption`
+    - `add_css_footer`
+    - `add_css_row`
+    - `add_css_column`
+    - `add_css_conditional_column`
 
+## Add CSS customizations
+- The CSS Code is added within the HTML table.
+
+<div style="float: left; width: 50%;"> 
+<img src="img/css_col.png" width="100%" style="display: block; margin: auto auto auto 0;" />
+
+<img src="img/css_row.png" width="100%" style="display: block; margin: auto auto auto 0;" />
+</div>
+
+<div style="float: left; width: 40%; margin-left: 30px"> 
+- stylize a column
+
+```r
+iris %>% 
+    head(10) %>% 
+    tableHTML(rownames = FALSE) %>%
+    add_theme('scientific') %>% 
+    add_css_column(
+        css = list(c('background-color', 'color'),
+                   c('gray', 'white')),
+        columns = 'Species') 
+```
+
+- stylize a row
+
+```r
+iris %>% 
+    head(10) %>% 
+    tableHTML(rownames = FALSE) %>%
+    add_css_row(
+        css = list(c('background-color', 'color'),
+                   c('purple', 'white')),
+        rows = odd(1:nrow(iris))) 
+```
+</div>
+
+## Add CSS customizations
+- The user can chain as many functions as needed when building the table.
+
+
+```r
+iris %>% 
+    head(5) %>% 
+    tableHTML(rownames = FALSE, 
+              caption = "5 rows from the iris dataset",
+              widths = rep(150, ncol(iris)))  %>%
+    add_css_thead(css = list(c('background-color', 'color'), 
+                          c('#5F4B8BFF', '#E69A8DFF'))) %>%
+    add_css_tbody(css = list(c('background-color', 'color', 'text-align'), 
+                          c('#E69A8DFF', '#5F4B8BFF', 'center'))) %>% 
+    add_css_caption(css=list(c('font-size', 'color'), c('20', '#5F4B8BFF')))
+```
+
+<img src="img/css_chained.png" width="100%" style="display: block; margin: auto auto auto 0;" />
+
+## Add CSS customizations
+- For complex CSS-styles, it is advised to use a separate CSS file.
+
+- ??????
 
 
 
