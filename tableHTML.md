@@ -463,8 +463,8 @@ df_q %>%
 <img src="img/css_row.png" width="100%" style="display: block; margin: auto auto auto 0;" />
 </div>
 
-<div style="float: left; width: 40%; margin-left: 30px"> 
-- stylize a column
+<div style="float: left; width: 45%; margin-left: 30px"> 
+- stylize columns
 
 ```r
 iris %>% 
@@ -477,7 +477,7 @@ iris %>%
         columns = 'Species') 
 ```
 
-- stylize a row
+- stylize rows
 
 ```r
 iris %>% 
@@ -510,6 +510,65 @@ iris %>%
 <img src="img/css_chained.png" width="100%" style="display: block; margin: auto auto auto 0;" />
 
 ## Add CSS customizations
+- Cool sub-family `add_css_conditional_column()` 
+
+<div style="float: left; width: 50%;"> 
+<br>
+<img src="img/conditional_css_1.png" width="100%" style="display: block; margin: auto auto auto 0;" />
+</div>
+
+
+<div style="float: left; width: 45%; margin-left: 30px"> 
+<br>
+
+```r
+mtcars %>% 
+  head(15) %>% 
+  tableHTML(widths = c(150, rep(50, 11))) %>% 
+  add_theme('scientific') %>% 
+  add_css_conditional_column(
+      columns = c('mpg', 'qsec'), 
+      conditional = 'max', 
+      css = list(c('background', 'color'),
+                 c('#cc0000', '#ffffff')), 
+      same_scale = FALSE)%>% 
+  add_css_conditional_column(
+      columns = c('mpg', 'qsec'), 
+      conditional = 'min', 
+      css = list(c('background', 'color'), 
+                 c('#00cc00', '#ffffff')),
+      same_scale = FALSE)
+```
+</div>
+
+## Add CSS customizations
+- Cool sub-family `add_css_conditional_column()` 
+
+<div style="float: left; width: 50%;"> 
+<br>
+<img src="img/conditional_css_2.png" width="100%" style="display: block; margin: auto auto auto 0;" />
+</div>
+
+<div style="float: left; width: 45%; margin-left: 30px"> 
+<br>
+
+```r
+mtcars %>% 
+  head(15) %>% 
+  tableHTML(widths = c(150, rep(50, 11))) %>% 
+  add_theme('scientific') %>% 
+  add_css_conditional_column(
+      columns = c('disp'), 
+      conditional = 'color_rank',
+      color_rank_theme = 'White-Blue')%>% 
+  add_css_conditional_column(
+      columns = c('hp'), 
+      conditional = 'color_rank',
+      color_rank_theme = 'White-Red') 
+```
+</div>
+
+## Add CSS customizations
 - For complex CSS-styles, it is advised to use a separate CSS file.
 
 - ??????
@@ -523,8 +582,9 @@ iris %>%
 # Shiny
 
 ## Shiny
-- `render_tableHTML`
-- `tableHTML_output`
+- tableHTML objects can be used in shiny with the functions:
+    - `render_tableHTML`
+    - `tableHTML_output`
 
 # Thank You
 <div style="color: white;">

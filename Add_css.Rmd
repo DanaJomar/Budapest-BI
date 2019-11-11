@@ -63,8 +63,8 @@ knitr::include_graphics("img/css_row.png")
 ```
 </div>
 
-<div style="float: left; width: 40%; margin-left: 30px"> 
-- stylize a column
+<div style="float: left; width: 45%; margin-left: 30px"> 
+- stylize columns
 ```{r eval = FALSE}
 iris %>% 
     head(10) %>% 
@@ -76,7 +76,7 @@ iris %>%
         columns = 'Species') 
 ```
 
-- stylize a row
+- stylize rows
 ```{r eval = FALSE}
 iris %>% 
     head(10) %>% 
@@ -107,6 +107,67 @@ iris %>%
 ```{r, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = "left"}
 knitr::include_graphics("img/css_chained.png")
 ```
+
+## Add CSS customizations
+- Cool sub-family `add_css_conditional_column()` 
+
+<div style="float: left; width: 50%;"> 
+<br>
+```{r, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = "left"}
+knitr::include_graphics("img/conditional_css_1.png")
+```
+</div>
+
+
+<div style="float: left; width: 45%; margin-left: 30px"> 
+<br>
+```{r eval = FALSE}
+mtcars %>% 
+  head(15) %>% 
+  tableHTML(widths = c(150, rep(50, 11))) %>% 
+  add_theme('scientific') %>% 
+  add_css_conditional_column(
+      columns = c('mpg', 'qsec'), 
+      conditional = 'max', 
+      css = list(c('background', 'color'),
+                 c('#cc0000', '#ffffff')), 
+      same_scale = FALSE)%>% 
+  add_css_conditional_column(
+      columns = c('mpg', 'qsec'), 
+      conditional = 'min', 
+      css = list(c('background', 'color'), 
+                 c('#00cc00', '#ffffff')),
+      same_scale = FALSE)
+```
+</div>
+
+## Add CSS customizations
+- Cool sub-family `add_css_conditional_column()` 
+
+<div style="float: left; width: 50%;"> 
+<br>
+```{r, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = "left"}
+knitr::include_graphics("img/conditional_css_2.png")
+```
+</div>
+
+<div style="float: left; width: 45%; margin-left: 30px"> 
+<br>
+```{r eval = FALSE, tidy=TRUE, tidy.opts=list(indent=2, width.cutoff=5)}
+mtcars %>% 
+  head(15) %>% 
+  tableHTML(widths = c(150, rep(50, 11))) %>% 
+  add_theme('scientific') %>% 
+  add_css_conditional_column(
+      columns = c('disp'), 
+      conditional = 'color_rank',
+      color_rank_theme = 'White-Blue')%>% 
+  add_css_conditional_column(
+      columns = c('hp'), 
+      conditional = 'color_rank',
+      color_rank_theme = 'White-Red') 
+```
+</div>
 
 ## Add CSS customizations
 - For complex CSS-styles, it is advised to use a separate CSS file.

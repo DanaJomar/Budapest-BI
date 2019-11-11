@@ -38,5 +38,6 @@ library(tableHTML)
 # Shiny
 
 ## Shiny
-- `render_tableHTML`
-- `tableHTML_output`
+- tableHTML objects can be used in shiny with the functions:
+    - `render_tableHTML`
+    - `tableHTML_output`
