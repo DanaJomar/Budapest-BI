@@ -153,7 +153,7 @@ knitr::include_graphics("img/conditional_css_2.png")
 
 <div style="float: left; width: 45%; margin-left: 30px"> 
 <br>
-```{r eval = FALSE, tidy=TRUE, tidy.opts=list(indent=2, width.cutoff=5)}
+```{r eval = FALSE}
 mtcars %>% 
   head(15) %>% 
   tableHTML(widths = c(150, rep(50, 11))) %>% 
@@ -171,5 +171,21 @@ mtcars %>%
 
 ## Add CSS customizations
 - For complex CSS-styles, it is advised to use a separate CSS file.
+- The function `make_css()` helps create css files
+- However this is more relevant when using tableHTML with shiny
 
-- ??????
+<br>
+
+```{r eval = FALSE}
+make_css(list('table', c('text-align', 'font-size'), c('center', '20px')),
+         list('th', c('background-color', 'height'), c('lightgreen', '30px')))
+
+# table {
+#   text-align: center;
+#   font-size: 20px;
+# }
+# 
+# th {
+#   background-color: lightgreen;
+#   height: 30px;
+```
