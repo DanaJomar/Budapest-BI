@@ -40,7 +40,7 @@ library(tableHTML)
 ## Introduction: why, what, and how?
 
 - While developing a [football app](https://lyzander.shinyapps.io/FootballeR/) using shiny, it was somewhat difficult to build a pretty HTML table
-  + Example: drawing vertival lines every three columns seemd like a difficult task
+  + Example: drawing vertical lines every three columns seemed like a difficult task
   + even using great packages like `xtable`
 - Development started in 2016
 - tableHTML is a package for building CSS-ible HTML tables in an easy and intuitive way
@@ -93,7 +93,7 @@ mtcars[,1:3] %>% head(2)
 
 ## Introduction
 
-- Using the function on R Studio will print the table on the viewer otherwise it will use the default browser, and 
+- Using the function in RStudio will print the table in the viewer pane otherwise it will use the default browser, and 
 
 - the default tables are built without any CSS in order to allow for full flexibility.
 
@@ -103,7 +103,7 @@ mtcars[,1:3] %>% head(2)
 
 ## Introduction
 <div style="float: left; width: 50%;"> 
-- The package was developed so that the functions are chained with the `%>%` (pipe) operator, exported from the package `magrittr`
+- The package was developed so that the functions can be chained with the `%>%` (pipe) operator, exported from the package `magrittr`
 
 <br>
 
@@ -111,11 +111,13 @@ mtcars[,1:3] %>% head(2)
 
 <br>
 
-```{r}
+```{r, eval = FALSE}
 mtcars %>% 
   tableHTML(widths = c(200, rep(50, 11))) %>% 
   add_theme('scientific') %>% 
-  tableHTML_to_image(file = 'img/tableHTML_to_image.png')
+  tableHTML_to_image(
+    file = 'img/tableHTML_to_image.png'
+    )
 ```
 </div>
 

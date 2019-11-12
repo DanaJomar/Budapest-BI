@@ -77,8 +77,8 @@ knitr::include_graphics("img/shiny_1.png")
 </div>
 
 ## Shiny
-- Creating and using external css files with `make_css()`
 <div style="float: left; width: 50%;"> 
+- Creating and using external css files with `make_css()`
 <br>
 ```{r eval = FALSE}
 make_css(list('tr:hover', 
@@ -103,12 +103,11 @@ server <- function(input, output){
       add_theme('scientific')
   )
 }
-
 shinyApp(ui, server)
 ```
 </div>
 
-<div style="float: left; width: 50%;"> 
+<div style="float: right; width: 50%;"> 
 ```{r, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = "left"}
 knitr::include_graphics("img/shiny_2.png")
 ```

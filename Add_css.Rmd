@@ -51,7 +51,7 @@ library(tableHTML)
     - `add_css_conditional_column`
 
 ## Add CSS customizations
-- The CSS Code is added within the HTML table.
+- The CSS code is added within the HTML table.
 
 <div style="float: left; width: 50%;"> 
 ```{r, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = "left"}
@@ -89,13 +89,13 @@ iris %>%
 </div>
 
 ## Add CSS customizations
-- The user can chain as many functions as needed when building the table.
+- Users can chain as many functions as needed when building the table.
 
 ```{r eval = FALSE}
 iris %>% 
     head(5) %>% 
     tableHTML(rownames = FALSE, 
-              caption = "5 rows from the iris dataset",
+              caption = "Wow, this is very purple",
               widths = rep(150, ncol(iris)))  %>%
     add_css_thead(css = list(c('background-color', 'color'), 
                           c('#5F4B8BFF', '#E69A8DFF'))) %>%

@@ -127,7 +127,7 @@ slides > slide:not(.nobackground):before {
 ## Introduction: why, what, and how?
 
 - While developing a [football app](https://lyzander.shinyapps.io/FootballeR/) using shiny, it was somewhat difficult to build a pretty HTML table
-  + Example: drawing vertival lines every three columns seemd like a difficult task
+  + Example: drawing vertical lines every three columns seemed like a difficult task
   + even using great packages like `xtable`
 - Development started in 2016
 - tableHTML is a package for building CSS-ible HTML tables in an easy and intuitive way
@@ -182,7 +182,7 @@ mtcars[,1:3] %>% head(2)
 
 ## Introduction
 
-- Using the function on R Studio will print the table on the viewer otherwise it will use the default browser, and 
+- Using the function in RStudio will print the table in the viewer pane otherwise it will use the default browser, and 
 
 - the default tables are built without any CSS in order to allow for full flexibility.
 
@@ -190,7 +190,7 @@ mtcars[,1:3] %>% head(2)
 
 ## Introduction
 <div style="float: left; width: 50%;"> 
-- The package was developed so that the functions are chained with the `%>%` (pipe) operator, exported from the package `magrittr`
+- The package was developed so that the functions can be chained with the `%>%` (pipe) operator, exported from the package `magrittr`
 
 <br>
 
@@ -203,10 +203,10 @@ mtcars[,1:3] %>% head(2)
 mtcars %>% 
   tableHTML(widths = c(200, rep(50, 11))) %>% 
   add_theme('scientific') %>% 
-  tableHTML_to_image(file = 'img/tableHTML_to_image.png')
+  tableHTML_to_image(
+    file = 'img/tableHTML_to_image.png'
+    )
 ```
-
-![](tableHTML_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 </div>
 
 <div style="float: right; width: 50%;"> 
@@ -237,7 +237,8 @@ mtcars %>%
 mtcars %>% 
   head(20) %>% 
   tableHTML(class = 'table_0034', 
-            widths = c(200, rep(50, ncol(mtcars))), 
+            widths = c(200, 
+                       rep(50, ncol(mtcars))), 
             border = 10)
 ```
 </div>
@@ -269,7 +270,8 @@ mtcars %>%
             row_groups = 
               list(c(10, 10), 
                    c('Group 1', 'Group 2')),
-            widths = c(100, rep(50, ncol(mtcars))), 
+            widths = c(100, 
+                       rep(50, ncol(mtcars))), 
             border = 10)
 ```
 </div>
@@ -279,7 +281,7 @@ mtcars %>%
 </div>
 
 ## Basic Options
-- Right out of the bat the function `tableHTML()` offers a lot options to customize your table.
+- Right out of the bat the function `tableHTML()` offers a lot of options to customize your table.
 
 <div style="float: left; width: 45%; font-size: 80%; margin-left: 30px"> 
   + Round numeric columns `round`
@@ -455,7 +457,7 @@ df_q %>%
     - `add_css_conditional_column`
 
 ## Add CSS customizations
-- The CSS Code is added within the HTML table.
+- The CSS code is added within the HTML table.
 
 <div style="float: left; width: 50%;"> 
 <img src="img/css_col.png" width="100%" style="display: block; margin: auto auto auto 0;" />
@@ -491,14 +493,14 @@ iris %>%
 </div>
 
 ## Add CSS customizations
-- The user can chain as many functions as needed when building the table.
+- Users can chain as many functions as needed when building the table.
 
 
 ```r
 iris %>% 
     head(5) %>% 
     tableHTML(rownames = FALSE, 
-              caption = "5 rows from the iris dataset",
+              caption = "Wow, this is very purple",
               widths = rep(150, ncol(iris)))  %>%
     add_css_thead(css = list(c('background-color', 'color'), 
                           c('#5F4B8BFF', '#E69A8DFF'))) %>%
@@ -637,8 +639,8 @@ shinyApp(ui, server)
 </div>
 
 ## Shiny
-- Creating and using external css files with `make_css()`
 <div style="float: left; width: 50%;"> 
+- Creating and using external css files with `make_css()`
 <br>
 
 ```r
@@ -665,12 +667,11 @@ server <- function(input, output){
       add_theme('scientific')
   )
 }
-
 shinyApp(ui, server)
 ```
 </div>
 
-<div style="float: left; width: 50%;"> 
+<div style="float: right; width: 50%;"> 
 <img src="img/shiny_2.png" width="100%" style="display: block; margin: auto auto auto 0;" />
 </div>
 

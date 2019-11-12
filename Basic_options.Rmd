@@ -52,7 +52,8 @@ library(tableHTML)
 mtcars %>% 
   head(20) %>% 
   tableHTML(class = 'table_0034', 
-            widths = c(200, rep(50, ncol(mtcars))), 
+            widths = c(200, 
+                       rep(50, ncol(mtcars))), 
             border = 10)
 ```
 </div>
@@ -85,7 +86,8 @@ mtcars %>%
             row_groups = 
               list(c(10, 10), 
                    c('Group 1', 'Group 2')),
-            widths = c(100, rep(50, ncol(mtcars))), 
+            widths = c(100, 
+                       rep(50, ncol(mtcars))), 
             border = 10)
 ```
 </div>
@@ -97,7 +99,7 @@ knitr::include_graphics("img/basic_opt_2.png")
 </div>
 
 ## Basic Options
-- Right out of the bat the function `tableHTML()` offers a lot options to customize your table.
+- Right out of the bat the function `tableHTML()` offers a lot of options to customize your table.
 
 <div style="float: left; width: 45%; font-size: 80%; margin-left: 30px"> 
   + Round numeric columns `round`
