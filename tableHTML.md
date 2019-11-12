@@ -570,8 +570,25 @@ mtcars %>%
 
 ## Add CSS customizations
 - For complex CSS-styles, it is advised to use a separate CSS file.
+- The function `make_css()` helps create css files
+- However this is more relevant when using tableHTML with shiny
 
-- ??????
+<br>
+
+
+```r
+make_css(list('table', c('text-align', 'font-size'), c('center', '20px')),
+         list('th', c('background-color', 'height'), c('lightgreen', '30px')))
+
+# table {
+#   text-align: center;
+#   font-size: 20px;
+# }
+# 
+# th {
+#   background-color: lightgreen;
+#   height: 30px;
+```
 
 
 
@@ -581,10 +598,81 @@ mtcars %>%
 
 # Shiny
 
+## Shiny{.smaller}
+- tableHTML objects can be used in shiny with the functions `render_tableHTML` and `tableHTML_output`
+
+<div style="float: left; width: 50%;"> 
+<br>
+
+```r
+ui <- fluidPage(
+  fluidRow(
+    column(width = 2,
+           selectInput('df', 'Select Data', 
+                       choices = c('mtcars', 'iris'),
+                       selected = 'mtcars')
+    ),
+    column(width = 10,
+           tableHTML_output('mytable')
+    )
+  )
+)
+server <- function(input, output){
+  my_data <- reactive(get(input$df))
+  
+  output$mytable <- render_tableHTML(
+    tableHTML(my_data()[1:3] %>% 
+                head(20), 
+              widths = c(150, rep(75, 3))) %>% 
+      add_theme('scientific')
+  )
+}
+
+shinyApp(ui, server)
+```
+</div>
+
+<div style="float: left; width: 50%;"> 
+<img src="img/shiny_1.png" width="100%" style="display: block; margin: auto auto auto 0;" />
+</div>
+
 ## Shiny
-- tableHTML objects can be used in shiny with the functions:
-    - `render_tableHTML`
-    - `tableHTML_output`
+- Creating and using external css files with `make_css()`
+<div style="float: left; width: 50%;"> 
+<br>
+
+```r
+make_css(list('tr:hover', 
+              c('background-color', 'color'), 
+              c('#cc0000', 'white')), 
+         file = '../mycss.css')
+```
+
+
+```r
+ui <- fluidPage(
+  fluidRow(
+           includeCSS('../mycss.css'),
+           tableHTML_output('mytable')
+    )
+  )
+
+server <- function(input, output){
+  output$mytable <- render_tableHTML(
+    tableHTML(mtcars[1:3] %>% 
+                head(20), 
+              widths = c(150, rep(75, 3))) %>% 
+      add_theme('scientific')
+  )
+}
+
+shinyApp(ui, server)
+```
+</div>
+
+<div style="float: left; width: 50%;"> 
+<img src="img/shiny_2.png" width="100%" style="display: block; margin: auto auto auto 0;" />
+</div>
 
 # Thank You
 <div style="color: white;">
