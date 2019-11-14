@@ -672,7 +672,7 @@ shinyApp(ui, server)
 </div>
 
 <div style="float: right; width: 50%;"> 
-<img src="img/shiny_2.png" width="100%" style="display: block; margin: auto auto auto 0;" />
+<img src="img/shiny_2.png" width="80%" style="display: block; margin: auto auto auto 0;" />
 </div>
 
 # Thank You
